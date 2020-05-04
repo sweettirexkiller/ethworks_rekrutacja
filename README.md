@@ -1,1 +1,7 @@
-# ethworks_rekrutacja
+# Ethworks rekrutacja
+
+##Build
+
+##Run
+
+##Test
