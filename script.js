@@ -40,17 +40,53 @@ class PolynomialLinked {
             return undefined;
         }
     }
-    validate(){
+    validate(node){
         //after adding new node we have to go through each existing node to check if a node with existing exponent already exists
+        let current = this.head;
+        let index = 0;
+        while(current !== null){
+            // if it exists then just update coeficient
+            if(current.exponent == node.exponent){
+                current.coeficient += node.coeficient;
+                //if coefficienst is ZERO then remove the node
+                if(current.coeficient == 0){
+                    this.remove(index);
+                }
+                return;
 
-        // if it exists then just update coeficient
+            }
+            current = current.next;
+            index++;
+        }
 
-        //if coefficienst is ZERO then remove the node
+
+
 
     }
 
-    //TODO: remove(index) function (mergesort)
-    remove(){
+    
+    remove(index){
+        if(this.head === null || index < 0) throw new RangeError(`Index ${index} doesn't exist.`);
+        if(index === 0){
+            let coefficient = this.head.coefficient;
+            let exponent = this.head.exponent;
+            this.head = this.head.next;
+            return [coefficient, exponent];
+        }
+        let current = this.head;
+        let previous = null;
+        let i = 0;
+        while(current !== null && i < index){
+            previous = current;
+            current = current.next;
+            i++
+        }
+        if(current !== null){
+            previous.next = current.next;
+            return [current.coeficient, current.exponent];
+        }
+
+        throw new RangeError(`Index ${index} doesn't exist.`);
 
     }
 
