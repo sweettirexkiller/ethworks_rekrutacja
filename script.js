@@ -24,19 +24,31 @@ class PolynomialLinked {
                 this.head = node;
             } else {
                 // while adding already sort from highest to the lowest exponential (we already know they do not repeat)
-
                 let current = this.head;
+                let previous = null;
                 let i = 0;
+                let diff = Number.MAX_SAFE_INTEGER;
+                let nearest, nearestIdx = null;
+
                 while (current.next !== null) {
                     //find where to insert (find closest index)
+                    if(Math.abs(node.exponent - current.exponent) < diff){
+                        nearest = current;
+                        nearestIdx = i;
+                        diff = Math.abs(node.exponent - current.exponent);
+                    }
 
-
-
-
+                    previous = current;
                     current = current.next;
                     i++;
                 }
-                current.next = node;
+                //if found nearest index exponent is bigger than node exponent then insert after this index
+                if(nearest.exponent > node.exponent){
+                    this.insertAfter(nearestIdx, node);
+                } else { //if found nearest index exponent is smaller than node exponent then insert before this index
+                    this.insertAfter(nearestIdx - 1 , node);
+                }
+
             }
 
 
@@ -44,9 +56,35 @@ class PolynomialLinked {
         }
     }
 
-    //TODO: finish insert function
-    insert(index, node){
+    //returns true if inserted correctly
+    insertAfter(index, node){
+        if(this.head ===null){
+            if(index != 0){
+                throw new RangeError(`Index ${index} does not exist`);
+            } else {
+                this.head = node;
+            }
+        }
 
+        if(this.head !== null && index == 0){
+            node.next = this.head;
+            this.head = node;
+            return true;
+        }
+        let current = this.head;
+        let previous = null;
+        let i;
+        while(i < index){
+            previous = current;
+            current = current.next;
+            if(current === null){ //if reaches end of list
+                break;
+            }
+            i++;
+        }
+        node.next = current;
+        previous.next = node;
+        return true;
     }
 
     get(index){ // O(n) complexity
