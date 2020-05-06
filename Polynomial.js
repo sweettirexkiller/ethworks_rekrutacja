@@ -163,9 +163,9 @@ class PolynomialLinked {
             current = current.next;
         }
         if(PolynomialString.charAt(0) =='+'){
-            console.log(PolynomialString.substr(1)); // we remove "+" sing
+            return PolynomialString.substr(1); // we remove "+" sing
         } else {
-            console.log(PolynomialString);
+            return PolynomialString;
         }
     }
 
