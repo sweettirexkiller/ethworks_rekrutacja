@@ -40,6 +40,25 @@ class PolynomialLinked {
             return undefined;
         }
     }
+    validate(){
+        //after adding new node we have to go through each existing node to check if a node with existing exponent already exists
+
+        // if it exists then just update coeficient
+
+        //if coefficienst is ZERO then remove the node
+
+    }
+
+    //TODO: remove(index) function (mergesort)
+    remove(){
+        
+    }
+
+    //TODO: sort linkedList
+    sort(){
+
+    }
+
     display(){
         let current = this.head;
         let PolynomialString =  String();
@@ -72,6 +91,23 @@ class PolynomialLinked {
         return this.values();
     }
 
+    add(secondPolynomial){
+        let resultPolynomial = new PolynomialLinked();
+
+        let current = this.head;
+        while (current !== null){
+            let secondCurrent = secondPolynomial.head;
+            let coefficientSum = 0;
+            while(secondCurrent !== null){
+                if(current.exponent == secondCurrent.exponent){
+                    resultPolynomial.add(current.coeficient + secondCurrent.coeficient, current.exponent);
+                }
+                secondCurrent = secondCurrent.next;
+            }
+
+            current = current.next;
+        }
+    }
 }
 
 let firstPoly = new PolynomialLinked();
