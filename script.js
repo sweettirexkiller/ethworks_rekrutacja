@@ -15,15 +15,16 @@ class PolynomialLinked {
     //adding next expression to polynomial with coefficient and exponent
     add(_coefficient, _exponent) { // O(n) complexity
         let node = new ExpressionNode(_coefficient, _exponent);
-
-        if (this.head === null) {
-            this.head = node;
-        } else {
-            let current = this.head;
-            while (current.next !== null) {
-                current = current.next;
+        if(!this.validate(node)){
+            if (this.head === null) {
+                this.head = node;
+            } else {
+                let current = this.head;
+                while (current.next !== null) {
+                    current = current.next;
+                }
+                current.next = node;
             }
-            current.next = node;
         }
     }
 
@@ -42,6 +43,7 @@ class PolynomialLinked {
     }
     validate(node){
         //after adding new node we have to go through each existing node to check if a node with existing exponent already exists
+        //return true if node was found, return false if such node does not exist;
         let current = this.head;
         let index = 0;
         while(current !== null){
@@ -52,19 +54,16 @@ class PolynomialLinked {
                 if(current.coeficient == 0){
                     this.remove(index);
                 }
-                return;
+                return true;
 
             }
             current = current.next;
             index++;
         }
-
-
-
-
+        return false;
     }
 
-    
+
     remove(index){
         if(this.head === null || index < 0) throw new RangeError(`Index ${index} doesn't exist.`);
         if(index === 0){
@@ -87,11 +86,6 @@ class PolynomialLinked {
         }
 
         throw new RangeError(`Index ${index} doesn't exist.`);
-
-    }
-
-    //TODO: sort linkedList
-    sort(){
 
     }
 
@@ -127,8 +121,7 @@ class PolynomialLinked {
         return this.values();
     }
 
-    //TODO:: finish
-    add(secondPolynomial){
+    add(secondPolynomial){ // while adding already sort from highest to lowest exponential
         let resultPolynomial = new PolynomialLinked();
 
         let current = this.head;
