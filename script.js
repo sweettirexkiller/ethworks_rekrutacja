@@ -176,22 +176,21 @@ class PolynomialLinked {
 
         let current = this.head;
         while (current !== null){
-            let secondCurrent = secondPolynomial.head;
-            let coefficientSum = 0;
-            while(secondCurrent !== null){
-                if(current.exponent == secondCurrent.exponent){
-                    resultPolynomial.add(current.coeficient + secondCurrent.coeficient, current.exponent);
-                }
-                secondCurrent = secondCurrent.next;
-            }
-
+            resultPolynomial.add(current.coeficient, current.exponent);
             current = current.next;
         }
+        let secondCurrent = secondPolynomial.head;
+        while(secondCurrent !== null){
+            resultPolynomial.add(secondCurrent.coeficient, secondCurrent.exponent);
+            secondCurrent = secondCurrent.next;
+        }
+
+        return resultPolynomial;
     }
 }
 
 let firstPoly = new PolynomialLinked();
-// let secondPoly = new PolynomialLinked();
+let secondPoly = new PolynomialLinked();
 
 
 firstPoly.add(3,3);
@@ -205,14 +204,16 @@ firstPoly.add(-5,-1);
 firstPoly.add(-5,0);
 firstPoly.add(-5,0);
 
-//
-//
-// secondPoly.add(-4,4);
-// secondPoly.add(3,3);
-// secondPoly.add(2,2);
-// secondPoly.add(-5,-1);
+secondPoly.add(-4,4);
+secondPoly.add(3,3);
+secondPoly.add(2,2);
+secondPoly.add(-5,-1);
 
 
-
+console.log("First Polynomial:");
 firstPoly.display();
-// secondPoly.display();
+console.log("First Polynomial:");
+secondPoly.display();
+let sum = firstPoly.addPolynomial(secondPoly);
+console.log("Sum:");
+sum.display();
