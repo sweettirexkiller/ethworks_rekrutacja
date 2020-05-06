@@ -43,7 +43,12 @@ console.log("First Polynomial:");
 console.log(firstPoly.display());
 console.log("First Polynomial:");
 console.log(secondPoly.display());
+
+//-------------------HERE---------------------
 let sum = firstPoly.addPolynomial(secondPoly);
+//--------------------------------------------
+
+
 console.log("Sum:");
 console.log(sum.display());
 
