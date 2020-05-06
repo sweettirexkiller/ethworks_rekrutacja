@@ -3,6 +3,8 @@
 
 ## PolynomialsLinked
 
+Projekt jest realizacją zadania rekrutacyjnego. Wielomiany zostały zaimplementowane ze pomocą list.
+
 ![shop](terminal.jpg)
 
 
