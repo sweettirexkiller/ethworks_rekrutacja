@@ -18,8 +18,6 @@ class PolynomialLinked {
         let node = new ExpressionNode(_coefficient, _exponent);
         if(!this.validate(node)){ // add a new node only if node with such exponential already exists
 
-
-
             if (this.head === null) {
                 this.head = node;
             } else {
@@ -28,12 +26,10 @@ class PolynomialLinked {
                 let previous = null;
                 let i = 0;
                 let diff = Number.MAX_SAFE_INTEGER;
-                let nearest, nearestIdx = null;
-
-                while (current.next !== null) {
+                let nearestIdx = 0;
+                while (current !== null) {
                     //find where to insert (find closest index)
-                    if(Math.abs(node.exponent - current.exponent) < diff){
-                        nearest = current;
+                    if (Math.abs(node.exponent - current.exponent) < diff) {
                         nearestIdx = i;
                         diff = Math.abs(node.exponent - current.exponent);
                     }
@@ -42,11 +38,13 @@ class PolynomialLinked {
                     current = current.next;
                     i++;
                 }
-                //if found nearest index exponent is bigger than node exponent then insert after this index
+
+                let nearest = this.get(nearestIdx);
+                //if found nearest index node exponent is bigger than node exponent then insert after this index
                 if(nearest.exponent > node.exponent){
-                    this.insertAfter(nearestIdx, node);
+                    this.insertNth(nearestIdx + 1, node);
                 } else { //if found nearest index exponent is smaller than node exponent then insert before this index
-                    this.insertAfter(nearestIdx - 1 , node);
+                    this.insertNth(nearestIdx , node);
                 }
 
             }
@@ -57,14 +55,15 @@ class PolynomialLinked {
     }
 
     //returns true if inserted correctly
-    insertAfter(index, node){
+    insertNth(index, node){
         if(this.head ===null){
             if(index != 0){
-                throw new RangeError(`Index ${index} does not exist`);
+                throw new RangeError(`There is no head! You can't insert node at ${index}'th position.`);
             } else {
                 this.head = node;
             }
         }
+
 
         if(this.head !== null && index == 0){
             node.next = this.head;
@@ -72,18 +71,20 @@ class PolynomialLinked {
             return true;
         }
         let current = this.head;
-        let previous = null;
-        let i;
+        let previousIdx = 0;
+        let i = 0;
         while(i < index){
-            previous = current;
+            previousIdx = i;
             current = current.next;
             if(current === null){ //if reaches end of list
                 break;
             }
             i++;
         }
+        let previous = this.get(previousIdx);
         node.next = current;
         previous.next = node;
+
         return true;
     }
 
@@ -106,7 +107,7 @@ class PolynomialLinked {
         let current = this.head;
         let index = 0;
         while(current !== null){
-            // if it exists then just update coeficient
+            // if it exists then just update coefficient
             if(current.exponent == node.exponent){
                 current.coeficient += node.coeficient;
                 //if coefficienst is ZERO then remove the node
@@ -169,17 +170,6 @@ class PolynomialLinked {
     }
 
 
-    *values(){
-        let current = this.head;
-        while(current!==null) {
-            yield current;
-            current = current.next;
-        }
-    }
-    [Symbol.iterator](){
-        return this.values();
-    }
-
     // TODO: finish adding two polynomials
     addPolynomial(secondPolynomial){
         let resultPolynomial = new PolynomialLinked();
@@ -201,21 +191,28 @@ class PolynomialLinked {
 }
 
 let firstPoly = new PolynomialLinked();
-let secondPoly = new PolynomialLinked();
+// let secondPoly = new PolynomialLinked();
 
 
-firstPoly.add(-4,4);
 firstPoly.add(3,3);
+firstPoly.add(5,5);
+firstPoly.add(5,5);
+firstPoly.add(-15,5);
+
+
 firstPoly.add(2,2);
 firstPoly.add(-5,-1);
+firstPoly.add(-5,0);
+firstPoly.add(-5,0);
 
-
-secondPoly.add(-4,4);
-secondPoly.add(3,3);
-secondPoly.add(2,2);
-secondPoly.add(-5,-1);
+//
+//
+// secondPoly.add(-4,4);
+// secondPoly.add(3,3);
+// secondPoly.add(2,2);
+// secondPoly.add(-5,-1);
 
 
 
 firstPoly.display();
-secondPoly.display();
+// secondPoly.display();
