@@ -12,4 +12,4 @@
 3) `npm install`
 
 ### Run: `node script.js`
-### Test `npm run test-dev`
+### Test: `npm run test-dev`

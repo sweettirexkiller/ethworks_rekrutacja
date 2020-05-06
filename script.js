@@ -15,7 +15,7 @@ const readline = require('readline').createInterface({
 //     process.exit(0);
 // });
 
-//TODO: interface for taking  two polynomials as input
+//TODO: interface for taking two polynomials as input
 //TODO: testing
 
 let firstPoly = new PolynomialLinked();
