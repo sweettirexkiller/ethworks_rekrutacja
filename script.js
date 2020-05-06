@@ -51,7 +51,7 @@ class PolynomialLinked {
 
     //TODO: remove(index) function (mergesort)
     remove(){
-        
+
     }
 
     //TODO: sort linkedList
@@ -91,6 +91,7 @@ class PolynomialLinked {
         return this.values();
     }
 
+    //TODO:: finish
     add(secondPolynomial){
         let resultPolynomial = new PolynomialLinked();
 
