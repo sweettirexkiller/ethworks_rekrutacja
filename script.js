@@ -13,19 +13,40 @@ class PolynomialLinked {
     }
 
     //adding next expression to polynomial with coefficient and exponent
+
     add(_coefficient, _exponent) { // O(n) complexity
         let node = new ExpressionNode(_coefficient, _exponent);
-        if(!this.validate(node)){
+        if(!this.validate(node)){ // add a new node only if node with such exponential already exists
+
+
+
             if (this.head === null) {
                 this.head = node;
             } else {
+                // while adding already sort from highest to the lowest exponential (we already know they do not repeat)
+
                 let current = this.head;
+                let i = 0;
                 while (current.next !== null) {
+                    //find where to insert (find closest index)
+
+
+
+
                     current = current.next;
+                    i++;
                 }
                 current.next = node;
             }
+
+
+
         }
+    }
+
+    //TODO: finish insert function
+    insert(index, node){
+
     }
 
     get(index){ // O(n) complexity
@@ -121,7 +142,8 @@ class PolynomialLinked {
         return this.values();
     }
 
-    add(secondPolynomial){ // while adding already sort from highest to lowest exponential
+    // TODO: finish adding two polynomials
+    addPolynomial(secondPolynomial){
         let resultPolynomial = new PolynomialLinked();
 
         let current = this.head;
