@@ -1,0 +1,25 @@
+{
+  "name": "ethworks_rekrutacja",
+  "version": "1.0.0",
+  "description": "## Build",
+  "main": "script.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sweettirexkiller/ethworks_rekrutacja.git"
+  },
+  "keywords": [
+    "work"
+  ],
+  "author": "Piotr Jankiewicz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sweettirexkiller/ethworks_rekrutacja/issues"
+  },
+  "homepage": "https://github.com/sweettirexkiller/ethworks_rekrutacja#readme",
+  "devDependencies": {
+    "jest": "^26.0.1"
+  }
+}
