@@ -4,7 +4,9 @@
   "description": "work",
   "main": "script.js",
   "dependencies": {},
-  "devDependencies": {},
+  "devDependencies": {
+    "jest": "^26.0.1"
+  },
   "scripts": {
     "test": "jest"
   },
