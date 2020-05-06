@@ -19,7 +19,6 @@ class PolynomialLinked {
         if (this.head === null) {
             this.head = node;
         } else {
-            console.log(this)
             let current = this.head;
             while (current.next !== null) {
                 current = current.next;
@@ -46,16 +45,19 @@ class PolynomialLinked {
         let PolynomialString =  String();
         while(current !== null){
             let expressionString;
-            if(current.coeficient < 0){
-                expressionString =  String(` -${current.coeficient}x^${current.exponent}`);
+            if(current.coeficient < 0){ //TODO: possible refactoring for KISS and DRY
+                expressionString =  String(`${current.coeficient}x^${current.exponent} `);
             }else{
-                expressionString =  String(` +${current.coeficient}x^${current.exponent}`);
+                expressionString =  String(`+${current.coeficient}x^${current.exponent} `);
             }
             PolynomialString = PolynomialString.concat(expressionString);
             current = current.next;
         }
-
-
+        if(PolynomialString.charAt(0) =='+'){
+            console.log(PolynomialString.substr(1)); // we remove "+" sing
+        } else {
+            console.log(PolynomialString);
+        }
     }
 
 
@@ -73,11 +75,21 @@ class PolynomialLinked {
 }
 
 let firstPoly = new PolynomialLinked();
+let secondPoly = new PolynomialLinked();
 
 
-firstPoly.add(4,4);
+firstPoly.add(-4,4);
 firstPoly.add(3,3);
-// firstPoly.add(2,2);
-// firstPoly.add(-5,-1);
+firstPoly.add(2,2);
+firstPoly.add(-5,-1);
+
+
+secondPoly.add(-4,4);
+secondPoly.add(3,3);
+secondPoly.add(2,2);
+secondPoly.add(-5,-1);
+
+
 
 firstPoly.display();
+secondPoly.display();
